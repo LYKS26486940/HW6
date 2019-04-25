@@ -1,0 +1,53 @@
+#include <Keypad.h>
+const byte ROWS = 4;
+const byte COLS = 4;
+char keys[ROWS][COLS] = { {'F', 'E', 'D', 'C'}, {'B', '3', '6', '9'},
+  {'A', '2', '5', '8'}, {'0', '1', '4', '7'}
+};
+byte rowPins[ROWS] = {5, 4, 3, 2};
+byte colPins[COLS] = {9, 8, 7, 6};
+int tune;
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  char key = keypad.getKey();
+  if(key=='0')
+    tune=131;
+  if(key=='1')
+    tune=147;
+   if(key=='2')
+    tune=165;
+    if(key=='3')
+    tune=131;
+    if(key=='4')
+    tune=175;
+    if(key=='5')
+    tune=196;
+    if(key=='6')
+    tune=220;
+    if(key=='7')
+    tune=131;
+    if(key=='8')
+    tune=247;
+    if(key=='9')
+    tune=131;
+    if(key=='A')
+    tune=262;
+    if(key=='B')
+    tune=294;
+    if(key=='C')
+    tune=330;
+    if(key=='D')
+    tune=349;
+    if(key=='E')
+    tune=392;
+    if(key=='F')
+    tune=440;
+  if (key != NO_KEY) {
+    tone(11,tune);
+    delay(2000);
+    noTone(11);
+  }
+}
